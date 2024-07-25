@@ -1,3 +1,21 @@
 .text-h3 {
-  color: #ff3366;
+  color: #E87170;
+  font-family: fantasy;
+  
+}
+
+
+.v-checkbox{
+  color: blue;
+}
+
+.responsive-image {
+  width: 100%;
+  height: auto;
+  max-height: 153px; /* 最大高さを設定 */
+  object-fit: cover;
+}
+
+.txtf {
+  margin: 20px auto;
 }

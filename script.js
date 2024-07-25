@@ -1,23 +1,31 @@
 const app = new Vue({
-  el: '#app', // Vueが管理する一番外側のDOM要素
+  el: '#app',
   vuetify: new Vuetify(),
-  data: {
-    // Vue内部で使いたい変数は全てこの中に定義する
-    task: '',
-    todoList: [], // これは配列
+  data() {
+    return {
+      newWish: {
+        text: '',
+        image: ''
+      },
+      wishList: [
+        { text: 'ひまわり畑', image: 'https://i.pinimg.com/originals/7a/8f/30/7a8f303ac83e280c7946018bca7e9256.jpg', checked: false },
+        { text: 'かき氷', image: 'https://i.pinimg.com/originals/86/ca/24/86ca24130196ec9dd931d225c821db76.jpg', checked: false },
+        { text: '花火', image: 'https://i.pinimg.com/originals/5e/27/a8/5e27a886f55a2b3be0ca6e61f29b1a47.jpg', checked: false },
+        { text: '流しそうめん', image: 'https://i.pinimg.com/originals/09/07/33/090733b29331ba94362ff9a8dbd29a4d.jpg', checked: false },
+      ],
+    };
   },
   methods: {
-    // 関数はここ
-    addTask: function() {
-      console.log('次のタスクが追加されました：', this.task);
-      // 配列の先頭に現在のタスク内容を追加する（最後尾の場合はpush）
-      this.todoList.unshift(this.task);
-      console.log('現在のToDo一覧：', this.todoList);
-    },
-    // 以下を追加、関数名はなんでもよい
-    clearAll: function() {
-      this.todoList = [];
-      console.log('全てのToDoが消去されました');
+    addWish() {
+      if (this.newWish.text !== '' && this.newWish.image !== '') {
+        this.wishList.push({
+          text: this.newWish.text,
+          image: this.newWish.image,
+          checked: false,
+        });
+        this.newWish.text = '';
+        this.newWish.image = '';
+      }
     },
   },
 });

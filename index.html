@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>ToDoアプリ</title>
+  <title>Vue.jsアプリ</title>
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css'>
 <link rel='stylesheet' href='https://unpkg.com/@mdi/font@6.x/css/materialdesignicons.min.css'>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'><link rel="stylesheet" href="./style.css">
@@ -10,75 +10,67 @@
 </head>
 <body>
 <!-- partial:index.partial.html -->
-<!-- Vueで指定された"app"要素、この中でのみVueが有効 -->
 <div id="app">
   <v-app>
-    <v-content>
+    <v-content style="background-color: #FEEE7E;">
       <v-container>
-        
-        <v-row
-          class="text-h3 mb-3 mt-3"
-          justify="center"
-          color="pink"
-          >
-          My ToDo App
+        <v-row class="text-h3 mb-3 mt-3"
+               align="center"
+               justify="center">
+          <p>2024 SUMMER WISH LIST</p>
         </v-row>
-        <v-row
-          class="mb-3 mt-3"
-          align="center"
-          justify="center"
-          >
-          <v-col 
-            cols="6"            
-            >
-            
-            <v-col
+
+        <v-row>
+          <v-col
+            v-for="(wish, index) in wishList"
+            :key="index"
             cols="12"
-            sm="12"
-            md="5"
+            sm="6"
+            md="3"
+            class="d-flex"
           >
-            <v-text-field
-              label="タスクを入力"
-              placeholder="朝ごはんを食べる"
-              filled
-              color="#ff3366"
-            ></v-text-field>
+            <v-card>
+              <v-img :src="wish.image" 
+                     class="responsive-image"></v-img>
+              <v-card-text>
+                <v-checkbox
+                  v-model="wish.checked"
+                  :label="wish.text"
+                  color="#E87170"
+                ></v-checkbox>
+              </v-card-text>
+            </v-card>
           </v-col>
         </v-row>
-        <v-row
-          class="mb-3 mt-3"
+        <div class="txtf">
+          <v-col cols="12">
+            <v-text-field
+              label="Let's enjoy summer"
+              v-model="newWish.text"
+              filled
+              color="#E87170"
+            ></v-text-field>
+
+            <v-text-field
+              label="画像のURLを入力"
+              v-model="newWish.image"
+              filled
+              color="#E87170"
+            ></v-text-field>
+          </v-col>
+          <v-row
           align="center"
           justify="center"
-          >
-          タスク内容：{{ task }}
-          <v-btn v-on:click="addTask"
-               fab
-               dark
-               small               
-               color="#ff3366"
-               >
-                 <v-icon dark>
-                   mdi-heart
-                 </v-icon>
-               </v-btn>
+        >
+          <v-btn @click="addWish" 
+                 dark midium color="#E87170">
+            <v-icon light>mdi-plus</v-icon>
+          </v-btn>
+        </div>
           
+           
+           
           
-        </v-row>
-        <v-row
-          class="mb-3 mt-3"
-          justify="center"
-          > 
-          <v-btn v-on:click="clearAll"
-                 
-                 
-                 >全てのToDoをクリア</v-btn>
-        </v-row>
-        <v-row 
-          class="mb-3 mt-3"
-          justify="center"
-          v-for="todo in todoList">
-          {{ todo }}
-        </v-row>
       </v-container>
     </v-content>
   </v-app>
