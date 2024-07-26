@@ -19,3 +19,13 @@
 .txtf {
   margin: 20px auto;
 }
+
+.randam{
+  border: 1px #E87170 solid;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.randam p{
+  color: #E87170;
+}

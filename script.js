@@ -13,6 +13,8 @@ const app = new Vue({
         { text: '花火', image: 'https://i.pinimg.com/originals/5e/27/a8/5e27a886f55a2b3be0ca6e61f29b1a47.jpg', checked: false },
         { text: '流しそうめん', image: 'https://i.pinimg.com/originals/09/07/33/090733b29331ba94362ff9a8dbd29a4d.jpg', checked: false },
       ],
+      randomWish: null,
+      dialog: false
     };
   },
   methods: {
@@ -27,5 +29,14 @@ const app = new Vue({
         this.newWish.image = '';
       }
     },
+    chooseRandomWish() {
+      if (this.wishList.length > 0) {
+        const randomIndex = Math.floor(Math.random() * this.wishList.length);
+        this.randomWish = this.wishList[randomIndex];
+        this.dialog = true;
+      } else {
+        this.randomWish = null;
+      }
+    }
   },
 });
